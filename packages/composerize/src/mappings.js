@@ -32,7 +32,7 @@ export type Mapping = {
 // Type to represent a compose file entry
 export type ArrayComposeEntry = {
     path: string,
-    value: [string],
+    value: [string | { [string]: string }],
 };
 
 export type KVComposeEntry = {
@@ -74,6 +74,7 @@ export const MAPPINGS: { [string]: Mapping } = {
     link: getMapping('Array', 'links'),
     entrypoint: getMapping('Array', 'entrypoint'),
     env: getMapping('Array', 'environment'),
+    mount: getMapping('Mounts', 'volumes'),
     name: getMapping('Value', 'container_name'),
     network: getMapping('Value', 'network_mode'),
     net: getMapping('Value', 'network_mode'), // alias for network

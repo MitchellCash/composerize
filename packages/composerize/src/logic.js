@@ -72,6 +72,24 @@ export const getComposeEntry = (mapping: Mapping, value: RawValue): ComposeEntry
         });
     }
 
+    if (mapping.type === 'Mounts') {
+        const fields = value.split(',');
+        const type = fields[0];
+        const source = fields[1];
+        const target = fields[2];
+
+        return ({
+            path: mapping.path,
+            value: [
+                {
+                    type,
+                    source,
+                    target,
+                },
+            ],
+        }: ArrayComposeEntry);
+    }
+
     return ({
         path: mapping.path,
         value: String(value),
